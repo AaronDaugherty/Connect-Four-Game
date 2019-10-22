@@ -1,10 +1,11 @@
 #include <iostream>
+#include <string>
 #include "Player.h"
 
 using namespace std;
 
 Player::Player() {
-    name = "Zoey"
+    name = "Zoey";
     win = false;}
 
 string Player::getName() {
