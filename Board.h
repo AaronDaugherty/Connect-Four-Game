@@ -8,7 +8,6 @@ public:
     Board(int width, int height);
     void printBoard();
     char getSpace(int i, int j);
-  /* fun */
 };
 
 
