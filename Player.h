@@ -3,8 +3,8 @@
 
 class Player {
 private:
-    string name;
-    bool win;
+  string name;
+  bool win;
 public:
   Player();
   string getName();
