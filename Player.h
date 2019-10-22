@@ -1,20 +1,20 @@
-#ifndef
-#define
+#ifndef PLAYER_H
+#define PLAYER_H
 
 class Player {
 private:
-    String name;
+    string name;
     bool win;
 public:
-    Player(String name = "Zoey");
-    String getName();
-    void setName(String name);
+    Player();
+    string getName();
+    void setName(string name);
     void setWin(bool win);
     bool getWin();
 
 
 
-}
+};
 
 
 
