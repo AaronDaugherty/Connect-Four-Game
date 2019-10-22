@@ -3,9 +3,9 @@
 
 class Board {
 private:
-    char boardArray[][];
+    char boardArray[6][7];
 public:
-    Board(int width, int height);
+    Board();
     void printBoard();
     char getSpace(int i, int j);
 };
