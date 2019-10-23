@@ -4,5 +4,5 @@
 using namespace std;
 
 SimpleComputerPlayer::SimpleComputerPlayer() {
-  setName("Zoey"); 
+  this->setName("Zoey"); 
 }
