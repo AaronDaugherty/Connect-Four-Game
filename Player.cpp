@@ -6,7 +6,8 @@ using namespace std;
 
 Player::Player() {
     name = "Zoey";
-    win = false;}
+    win = false;
+}
 
 string Player::getName() {
     return this->name;

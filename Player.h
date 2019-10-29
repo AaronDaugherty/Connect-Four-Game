@@ -5,7 +5,7 @@
 using namespace std;
 
 class Player {
-private:
+protected:
   string name;
   bool win;
 public:
