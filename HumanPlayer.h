@@ -6,7 +6,6 @@
 class HumanPlayer : public Player {
 public:
   HumanPlayer();
-  void assignName();
   int move();
 };
 

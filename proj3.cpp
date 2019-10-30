@@ -37,13 +37,11 @@ int main(int argc, char* argv[]) {
 
 void hvh() {
   int count = 0;
-
-  HumanPlayer *p1 = new HumanPlayer;
-  HumanPlayer *p2 = new HumanPlayer;
+  
   cout << "Player One, please enter your name: ";
-  p1->assignName();
+  HumanPlayer *p1 = new HumanPlayer;
   cout << "Player Two, please enter your name: ";
-  p2->assignName();
+  HumanPlayer *p2 = new HumanPlayer;
   
   Board *b1 = new Board();
   b1->printBoard();
@@ -100,10 +98,9 @@ void cvc() {
 void hvc() {
   int count = 0;
   
-  HumanPlayer *p1 = new HumanPlayer;
   SimpleComputerPlayer *p2 = new SimpleComputerPlayer;
   cout << "Player One, please enter your name: ";
-  p1->assignName();
+  HumanPlayer *p1 = new HumanPlayer;
   cout << "Player Two, please enter your name: ";
   p2->assignName();
 
@@ -132,11 +129,10 @@ void cvh() {
   int count = 0;
   
   SimpleComputerPlayer *p1 = new SimpleComputerPlayer;
-  HumanPlayer *p2 = new HumanPlayer;
   cout << "Player One, please enter your name: ";
   p1->assignName();
   cout << "Player Two, please enter your name: ";
-  p2->assignName();
+  HumanPlayer *p2 = new HumanPlayer;
 
   Board *b1 = new Board();
   b1->printBoard();
