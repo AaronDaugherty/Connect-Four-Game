@@ -6,48 +6,142 @@
 
 using namespace std;
 
-void declareComp(int i);
+void hvh();
 
-void declareHuman(int i);
+void cvc();
+
+void hvc();
+
+void cvh();
 
 int main(int argc, char* argv[]) {
 
-  for (int i = 1; i < 3; i++) {
-    string input = argv[i];
-    
-    if (input == "-c") {
-      declareComp(i);
-    }
-    
-    else if (input == "-h") {
-      declareHuman(i); 
-    }
-  }
+  string a1 = argv[1];
+  string a2 = argv[2];
+
+  cout << "Let's Start a Game of Connect 4" << endl;
   
-  //board initialization
+  if (a1 == "-h" && a2 == "-h") {
+    hvh();
+  }
+  if (a1 == "-c" && a2 == "-c") {
+    cvc();
+  }
+  if (a1 == "-h" && a2 == "-c") {
+    hvc();
+  }
+  if (a1 == "-c" && a2 == "-h") {
+    cvh();
+  }
+}
+
+void hvh() {
+
+  HumanPlayer *p1 = new HumanPlayer;
+  HumanPlayer *p2 = new HumanPlayer;
+  cout << "Player One, please enter your name: ";
+  p1->assignName();
+  cout << "Player Two, please enter your name: ";
+  p2->assignName();
   Board *b1 = new Board();
   b1->printBoard();
-  return 0;
+  
+  Board *b1 = new Board();
+  b1->printBoard();
+
+  while (count < 42) {
+    cout << p1->getName() << "'s turn, Please enter an integer between 1 and 7: ";
+    b1->p1Game(p1->move());
+    b1->printBoard();
+
+    count++;
+
+    cout << p2->getName() << "'s turn, Please enter an integer between 1 and 7: ";
+    b1->p2Game(p2->move());
+    b1->printBoard();
+
+    count++; 
+  }
 }
 
-void declareComp(int i) {
-  if (i == 1) {
-    SimpleComputerPlayer *zoey = new SimpleComputerPlayer;
-    cout << "Player One, please enter your name: " << zoey->getName() << endl;
-  }
-  else if (i == 2) {
-    SimpleComputerPlayer *yeoz = new SimpleComputerPlayer;
-    cout << "Player Two, please enter your name: " << yeoz->getName();
+void cvc() {
+  int count = 0;
+  
+  SimpleComputerPlayer *p1 = new SimpleComputerPlayer;
+  SimpleComputerPlayer *p2 = new SimpleComputerPlayer;
+  cout << "Player One, please enter your name: ";
+  p1->assignName();
+  cout << "Player Two, please enter your name: ";
+  p2->assignName();
+
+  Board *b1 = new Board();
+  b1->printBoard();
+
+  while (count < 42) {
+    cout << p1->getName() << "'s turn, Please enter an integer between 1 and 7: ";
+    b1->p1Game(p1->move(b1->boardArray));
+    b1->printBoard();
+
+    count++;
+    
+    cout << p2->getName() << "'s turn, Please enter an integer between 1 and 7: ";
+    b1->p2Game(p2->move(b1->boardArray));
+    b1->printBoard();
+
+    count++;
   }
 }
 
-void declareHuman(int i) {
-  if (i == 1) {
-    cout << "Player One, please enter your name: ";
-    HumanPlayer *aaron = new HumanPlayer;
-  }
-  else if (i == 2) {
-    cout << "Player Two, please enter your name: ";
-    HumanPlayer *garrett = new HumanPlayer;
+void hvc() {
+  int count = 0;
+  
+  HumanPlayer *p1 = new HumanPlayer;
+  SimpleComputerPlayer *p2 = new SimpleComputerPlayer;
+  cout << "Player One, please enter your name: ";
+  p1->assignName();
+  cout << "Player Two, please enter your name: ";
+  p2->assignName();
+
+  Board *b1 = new Board();
+  b1->printBoard();
+
+  while (count < 42) {
+    cout << p1->getName() << "'s turn, Please enter an integer between 1 and 7: ";
+    b1->p1Game(p1->move());
+    b1->printBoard();
+
+    count++;
+    
+    cout << p2->getName() << "'s turn, Please enter an integer between 1 and 7: ";
+    b1->p2Game(p2->move(b1->boardArray));
+    b1->printBoard();
+
+    count++;
   }
 }
+
+void cvh() {
+  SimpleComputerPlayer *p1 = new SimpleComputerPlayer;
+  HumanPlayer *p2 = new HumanPlayer;
+  cout << "Player One, please enter your name: ";
+  p1->assignName();
+  cout << "Player Two, please enter your name: ";
+  p2->assignName();
+
+  Board *b1 = new Board();
+  b1->printBoard();
+
+  while (count < 42) {
+    cout << p1->getName() << "'s turn, Please enter an integer between 1 and 7: ";
+    b1->p2Game(p1->move(b1->boardArray));
+    b1->printBoard();
+
+    count++;
+    
+    cout << p2->getName() << "'s turn, Please enter an integer between 1 and 7: ";
+    b1->p1Game(p2->move());
+    b1->printBoard();
+
+    count++; 
+}
+

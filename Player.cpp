@@ -20,3 +20,13 @@ void Player::setName(string pName) {
 void Player::setWin(bool pWin) {
     this->win = pWin;
 }
+
+void Player::assignName() {
+  cout << name << endl;
+}
+
+int Player::move() {
+  int move;
+  cin >> move;
+  return move;
+}

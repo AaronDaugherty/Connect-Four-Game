@@ -14,7 +14,8 @@ public:
   void setName(string name);
   void setWin(bool win);
   bool getWin();
-    //virtual void move();
+  void assignName();
+  int move();
     
 };
 

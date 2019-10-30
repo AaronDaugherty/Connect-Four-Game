@@ -4,9 +4,12 @@
 #include "Player.h"
 
 class SimpleComputerPlayer : public Player {
+private:
+  int moveCount = 0;
 public:
   SimpleComputerPlayer();
-  string getName();
+  void assignName();
+  int move(char boardArray[6][7]);
 };
 
 #endif
