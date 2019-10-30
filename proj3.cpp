@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
   string a1 = argv[1];
   string a2 = argv[2];
 
-  cout << "Let's Start a Game of Connect 4" << endl;
+  cout << "Let's Start a Game of Connect 4" << endl << endl;
   
   if (a1 == "-h" && a2 == "-h") {
     hvh();
@@ -36,6 +36,7 @@ int main(int argc, char* argv[]) {
 }
 
 void hvh() {
+  int count = 0;
 
   HumanPlayer *p1 = new HumanPlayer;
   HumanPlayer *p2 = new HumanPlayer;
@@ -43,8 +44,6 @@ void hvh() {
   p1->assignName();
   cout << "Player Two, please enter your name: ";
   p2->assignName();
-  Board *b1 = new Board();
-  b1->printBoard();
   
   Board *b1 = new Board();
   b1->printBoard();
@@ -61,6 +60,9 @@ void hvh() {
     b1->printBoard();
 
     count++; 
+  }
+  if (count == 42) {
+    cout << endl << "The board is full, it is a draw!" << endl;
   }
 }
 
@@ -90,6 +92,9 @@ void cvc() {
 
     count++;
   }
+  if (count == 42) {
+    cout << endl << "The board is full, it is a draw!" << endl;
+  }
 }
 
 void hvc() {
@@ -118,9 +123,14 @@ void hvc() {
 
     count++;
   }
+  if (count == 42) {
+    cout << endl << "The board is full, it is a draw!" << endl;
+  }
 }
 
 void cvh() {
+  int count = 0;
+  
   SimpleComputerPlayer *p1 = new SimpleComputerPlayer;
   HumanPlayer *p2 = new HumanPlayer;
   cout << "Player One, please enter your name: ";
@@ -142,6 +152,10 @@ void cvh() {
     b1->p1Game(p2->move());
     b1->printBoard();
 
-    count++; 
+    count++;
+  }
+  if (count == 42) {
+    cout << endl << "The board is full, it is a draw!" << endl;
+  }
 }
 
