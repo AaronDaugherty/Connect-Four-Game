@@ -47,6 +47,7 @@ void hvh() {
   b1->printBoard();
 
   while (count < 42) {
+    cout << "Value of count = " << count << endl;
     cout << p1->getName() << "'s turn, Please enter an integer between 1 and 7: ";
     b1->p1Game(p1->move());
     b1->printBoard();
