@@ -11,6 +11,9 @@ Board::Board() {
   }
 }
 
+Board::~Board() {
+}
+
 void Board::printBoard() {
   for(int i = 0; i < 6; i++) {
     cout << endl;
@@ -30,7 +33,7 @@ char Board::p1Game(int move) {
   if (move > 0 && move < 8) {
     for (int i = 6; i >= 0; i--) {
       if (boardArray[i][move-1] == '_') {
-	boardArray[i][move-1] = 'x';
+	boardArray[i][move-1] = 'X';
 	return boardArray[6][7];
       }
     }
@@ -42,7 +45,7 @@ char Board::p2Game(int move) {
   if (move > 0 && move < 8) {
     for (int i = 6; i >= 0; i--) {
       if (boardArray[i][move-1] == '_') {
-	boardArray[i][move-1] = 'o';
+	boardArray[i][move-1] = 'O';
 	return boardArray[6][7];
       }
     }
