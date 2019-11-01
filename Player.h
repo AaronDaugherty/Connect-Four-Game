@@ -10,6 +10,7 @@ protected:
   bool win;
 public:
   Player();
+  ~Player();
   string getName();
   void setName(string name);
   void setWin(bool win);

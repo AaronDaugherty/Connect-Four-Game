@@ -21,18 +21,12 @@ int main(int argc, char* argv[]) {
 
   cout << "Let's Start a Game of Connect 4" << endl << endl;
   
-  if (a1 == "-h" && a2 == "-h") {
-    hvh();
-  }
-  if (a1 == "-c" && a2 == "-c") {
-    cvc();
-  }
-  if (a1 == "-h" && a2 == "-c") {
-    hvc();
-  }
-  if (a1 == "-c" && a2 == "-h") {
-    cvh();
-  }
+  if (a1 == "-h" && a2 == "-h") { hvh(); }
+  if (a1 == "-c" && a2 == "-c") { cvc(); }
+  if (a1 == "-h" && a2 == "-c") { hvc(); }
+  if (a1 == "-c" && a2 == "-h") { cvh(); }
+
+  return 0;
 }
 
 void hvh() {
@@ -43,7 +37,7 @@ void hvh() {
   cout << "Player Two, please enter your name: ";
   HumanPlayer *p2 = new HumanPlayer;
   
-  Board *b1 = new Board();
+  Board *b1 = new Board;
   b1->printBoard();
 
   while (count < 42) {
@@ -63,6 +57,9 @@ void hvh() {
   if (count == 42) {
     cout << endl << "The board is full, it is a draw!" << endl;
   }
+  delete (b1);
+  delete (p1);
+  delete (p2);
 }
 
 void cvc() {
@@ -91,9 +88,13 @@ void cvc() {
 
     count++;
   }
+  
   if (count == 42) {
     cout << endl << "The board is full, it is a draw!" << endl;
-  }
+  }  
+  delete (b1);
+  delete (p1);
+  delete (p2);
 }
 
 void hvc() {
@@ -124,6 +125,9 @@ void hvc() {
   if (count == 42) {
     cout << endl << "The board is full, it is a draw!" << endl;
   }
+  delete (b1);
+  delete (p1);
+  delete (p2);
 }
 
 void cvh() {
@@ -154,5 +158,8 @@ void cvh() {
   if (count == 42) {
     cout << endl << "The board is full, it is a draw!" << endl;
   }
+  delete (b1);
+  delete (p1);
+  delete (p2);
 }
 

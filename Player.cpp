@@ -9,6 +9,9 @@ Player::Player() {
     win = false;
 }
 
+Player::~Player() {
+}
+
 string Player::getName() {
     return this->name;
 }
