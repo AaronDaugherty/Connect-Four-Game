@@ -6,18 +6,40 @@
 
 using namespace std;
 
+/*
+ *Handles a game loop for a Human vs Human game.
+ */
 void hvh();
 
+/*
+ *Handles a game loop for a Computer vs Computer game.
+ */
 void cvc();
 
+/*
+ *Handles game loop for a Human vs Computer game
+ */
 void hvc();
 
+/*
+ *Handles game loop for a Computer vs Human game.
+ */
 void cvh();
 
+/*
+ *Checks board to see if there is a winning configuration
+ */
 bool isWin(char boardArray[6][7]);
 
+/*
+ *Checks for 4 continous tokens in a specified direction.
+ */
 bool winCheck(char arrayBoard[6][7], int row, int col, int stepRow, int stepCol);
 
+/*
+ *Main method for running connect four game.
+ *Evaluates command line arguments to determine the opponents of game.
+ */
 int main(int argc, char* argv[]) {
 
   string a1 = argv[1];
@@ -36,6 +58,7 @@ int main(int argc, char* argv[]) {
 void hvh() {
   int count = 0;
   bool gameOver = false;
+  //Creating player objects
   cout << "Player One, please enter your name: ";
   HumanPlayer *p1 = new HumanPlayer;
   cout << "Player Two, please enter your name: ";
@@ -44,6 +67,7 @@ void hvh() {
   Board *b1 = new Board;
   b1->printBoard();
 
+  //Loop for game
   while (count < 42 && gameOver == false) {
     cout << p1->getName() << "'s turn, Please enter an integer between 1 and 7: ";
     b1->p1Game(p1->move());
@@ -53,6 +77,7 @@ void hvh() {
         gameOver = true;
     }
     count++;
+    //If statement prevents loop from continuing after a win
     if(gameOver != true) {
       cout << p2->getName() << "'s turn, Please enter an integer between 1 and 7: ";
       b1->p2Game(p2->move());
@@ -68,14 +93,13 @@ void hvh() {
       cout << endl << "The board is full, it is a draw!" << endl;
     }
   }
-  delete (b1);
-  delete (p1);
-  delete (p2);
+  delete (b1); delete (p1); delete (p2);
 }
 
 void cvc() {
   int count = 0;
   bool gameOver = false;
+  //Creating player objects
   SimpleComputerPlayer *p1 = new SimpleComputerPlayer;
   SimpleComputerPlayer *p2 = new SimpleComputerPlayer;
   cout << "Player One, please enter your name: ";
@@ -85,7 +109,7 @@ void cvc() {
 
   Board *b1 = new Board();
   b1->printBoard();
-
+  //Loop for game
   while (count < 42 && gameOver == false) {
     cout << p1->getName() << "'s turn, Please enter an integer between 1 and 7: ";
     b1->p1Game(p1->move(b1->boardArray));
@@ -108,12 +132,11 @@ void cvc() {
     }
     
     if (count == 42) {
-      cout << endl << "The board is full, it is a draw!" << endl;
+
+        cout << endl << "The board is full, it is a draw!" << endl;
     }
   }  
-  delete (b1);
-  delete (p1);
-  delete (p2);
+  delete (b1); delete (p1); delete (p2);
 }
 
 void hvc() {
@@ -127,7 +150,8 @@ void hvc() {
 
   Board *b1 = new Board();
   b1->printBoard();
-
+  
+  //Loop for game
   while (count < 42 && gameOver == false) {
     cout << p1->getName() << "'s turn, Please enter an integer between 1 and 7: ";
     b1->p1Game(p1->move());
@@ -152,14 +176,13 @@ void hvc() {
       cout << endl << "The board is full, it is a draw!" << endl;
     }
   }
-  delete (b1);
-  delete (p1);
-  delete (p2);
+  delete (b1); delete (p1); delete (p2);
 }
 
 void cvh() {
   int count = 0;
   bool gameOver = false;
+  //Creating player objects
   SimpleComputerPlayer *p1 = new SimpleComputerPlayer;
   cout << "Player One, please enter your name: ";
   p1->assignName();
@@ -169,6 +192,7 @@ void cvh() {
   Board *b1 = new Board();
   b1->printBoard();
 
+  //Loop for game
   while (count < 42 && gameOver == false) {
     cout << p1->getName() << "'s turn, Please enter an integer between 1 and 7: ";
     b1->p2Game(p1->move(b1->boardArray));
@@ -192,15 +216,12 @@ void cvh() {
       cout << endl << "The board is full, it is a draw!" << endl;
     }
   }
-  delete (b1);
-  delete (p1);
-  delete (p2);
+  delete (b1); delete (p1); delete (p2);
 }
 
 bool winCheck(char arrayBoard[6][7], int row, int col, int stepRow, int stepCol) {
-  //cout << "Checking with a start at row " << row << " and column " << col << endl; 
-  
   char start = arrayBoard[row][col];
+  //prevents from checking empty spaces
   if(start == '_') {
       return false;
   }
@@ -218,11 +239,10 @@ bool isWin(char arrayBoard[6][7]) {
     //cout << "Checking for win..." << endl;
     for(int i = 0; i < 6; i++) {
         for(int j = 0; j < 7; j++){
-            //cout << "I am looping" << endl;
-            if(winCheck(arrayBoard, i, j, 0, 1) ||
-               winCheck(arrayBoard, i, j, 1, 0) ||
-               winCheck(arrayBoard, i, j, 1, 1) ||
-               winCheck(arrayBoard, i, j, 1, -1)){
+            if(winCheck(arrayBoard, i, j, 0, 1) || //Horizontal
+               winCheck(arrayBoard, i, j, 1, 0) || //Vertical
+               winCheck(arrayBoard, i, j, 1, 1) || //UpDiagnol
+               winCheck(arrayBoard, i, j, 1, -1)){ //DownDiagnol
                
                 return true;
             }
