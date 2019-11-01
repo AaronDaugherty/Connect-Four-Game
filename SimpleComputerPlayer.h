@@ -3,6 +3,9 @@
 
 #include "Player.h"
 
+/*
+ *This class represents a computer player in a game of connect four.
+ */
 class SimpleComputerPlayer : public Player {
 private:
   int moveCount = 0;
