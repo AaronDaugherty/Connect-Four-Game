@@ -14,6 +14,8 @@ void hvc();
 
 void cvh();
 
+void win(Player p);
+
 int main(int argc, char* argv[]) {
 
   string a1 = argv[1];
@@ -41,7 +43,6 @@ void hvh() {
   b1->printBoard();
 
   while (count < 42) {
-    cout << "Value of count = " << count << endl;
     cout << p1->getName() << "'s turn, Please enter an integer between 1 and 7: ";
     b1->p1Game(p1->move());
     b1->printBoard();
@@ -85,6 +86,7 @@ void cvc() {
     cout << p2->getName() << "'s turn, Please enter an integer between 1 and 7: ";
     b1->p2Game(p2->move(b1->boardArray));
     b1->printBoard();
+    // if(p2->p2WinCheck(b1->boardArray)) { win(p2) }
 
     count++;
   }
@@ -163,3 +165,6 @@ void cvh() {
   delete (p2);
 }
 
+void win(Player p) {
+  cout << endl << p->getName() << "Connected Four and Wins!" << endl;
+}
