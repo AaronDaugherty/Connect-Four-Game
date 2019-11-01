@@ -12,6 +12,10 @@ void SimpleComputerPlayer::assignName() {
   cout << name << endl;
 }
 
+string SimpleComputerPlayer::getName() {
+  return this->name;
+}
+
 int SimpleComputerPlayer::move(char boardArray[6][7]) {
   for (int i = 0; i < 7; i++) {
     for (int j = 6; j >= 0; j--) {

@@ -3,20 +3,45 @@
 #include <string>
 
 using namespace std;
-
+/*The Player class represents a player in the connect four game.
+ *It is a parent class of two sub classes, HumanPLayer and Simple
+ *ComputerPlayer, which represent different types of players in
+ *any given instance of the game.
+ */
 class Player {
 protected:
   string name;
-  bool win = false;
 public:
+    
+/*
+ *Constructor for the Player class.
+ *Assigns default name of Zoey.
+ */
   Player();
-  ~Player();
-  string getName();
+    
+/*
+ *Deconstructor for the Player class.
+ */
+  virtual ~Player();
+    
+/*
+ *Returns the name of the Player object
+ */
+  virtual string getName();
+    
+/*
+ *Sets the name of the Player object to the given 
+ *string value.
+ */
   void setName(string name1);
-  bool p1WinCheck(char boardArray[6][7]);
-  bool p2WinCheck(char boardArray[6][7]);
-  bool getWin();
+
+/*
+ *Prints the name of the Player object
+ */
   void assignName();
+/*
+ *Takes in user input and returns the desired move.
+ */
   int move();    
 };
 

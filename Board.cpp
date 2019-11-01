@@ -25,6 +25,7 @@ void Board::printBoard() {
   cout << endl;
 }
 
+
 char Board::getSpace(int i, int j) {
   return boardArray[i][j];
 }

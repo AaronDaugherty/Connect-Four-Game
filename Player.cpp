@@ -6,7 +6,6 @@ using namespace std;
 
 Player::Player() {
     name = "Zoey";
-    win = false;
 }
 
 Player::~Player() {
@@ -20,23 +19,20 @@ string Player::getName() {
     return this->name;
 }
 
-bool Player::p1WinCheck(char arrayBoard[6][7]) {
-  int counter = 0;
-  for(int i = 0; i < 6; i++) {
-    for(int j = 0; j < 7; j++) {
-      if(arrayBoard[i][j] == 'X') {
-	for(int k = 0; k < 4; k++) {
-	  if(counter > 3) {
-	    return true;
-	  }
-	  if(arrayBoard[
-	  
-  return false;
+/*
+bool Player::winCheck(char arrayBoard[6][7], int row, int col, int stepRow, int stepCol) {
+  char start = arrayBoard[row][col];
+  if(start == '_') {
+    return false;
+  }
+  for(int i = 0; i < 3; i++) {
+      if(arrayBoard[row + i * stepRow][col + i * stepCol] != start) {
+          return false;
+      }
+  }
+  return true;
 }
-
-bool Player::p2WinCheck(char arrayBoard[6][7]) {
-  return false;
-}
+*/
 
 void Player::assignName() {
   cout << name << endl;

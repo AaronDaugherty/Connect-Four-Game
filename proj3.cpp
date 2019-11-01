@@ -14,7 +14,9 @@ void hvc();
 
 void cvh();
 
-void win(Player p);
+bool isWin(char boardArray[6][7]);
+
+bool winCheck(char arrayBoard[6][7], int row, int col, int stepRow, int stepCol);
 
 int main(int argc, char* argv[]) {
 
@@ -33,7 +35,7 @@ int main(int argc, char* argv[]) {
 
 void hvh() {
   int count = 0;
-  
+  bool gameOver = false;
   cout << "Player One, please enter your name: ";
   HumanPlayer *p1 = new HumanPlayer;
   cout << "Player Two, please enter your name: ";
@@ -42,21 +44,29 @@ void hvh() {
   Board *b1 = new Board;
   b1->printBoard();
 
-  while (count < 42) {
+  while (count < 42 && gameOver == false) {
     cout << p1->getName() << "'s turn, Please enter an integer between 1 and 7: ";
     b1->p1Game(p1->move());
     b1->printBoard();
-
+    if(isWin(b1->boardArray)) {
+        cout << p1->getName() << " Connected Four and Wins!" << endl;
+        gameOver = true;
+    }
     count++;
-
-    cout << p2->getName() << "'s turn, Please enter an integer between 1 and 7: ";
-    b1->p2Game(p2->move());
-    b1->printBoard();
-
-    count++; 
-  }
-  if (count == 42) {
-    cout << endl << "The board is full, it is a draw!" << endl;
+    if(gameOver != true) {
+      cout << p2->getName() << "'s turn, Please enter an integer between 1 and 7: ";
+      b1->p2Game(p2->move());
+      b1->printBoard();
+      if(isWin(b1->boardArray)) {
+          cout << p2->getName() << " Connected Four and Wins!" << endl;
+          gameOver = true;
+      }    
+  
+      count++; 
+    }
+    if (count == 42) {
+      cout << endl << "The board is full, it is a draw!" << endl;
+    }
   }
   delete (b1);
   delete (p1);
@@ -65,7 +75,7 @@ void hvh() {
 
 void cvc() {
   int count = 0;
-  
+  bool gameOver = false;
   SimpleComputerPlayer *p1 = new SimpleComputerPlayer;
   SimpleComputerPlayer *p2 = new SimpleComputerPlayer;
   cout << "Player One, please enter your name: ";
@@ -76,23 +86,30 @@ void cvc() {
   Board *b1 = new Board();
   b1->printBoard();
 
-  while (count < 42) {
+  while (count < 42 && gameOver == false) {
     cout << p1->getName() << "'s turn, Please enter an integer between 1 and 7: ";
     b1->p1Game(p1->move(b1->boardArray));
     b1->printBoard();
-
+    if(isWin(b1->boardArray)) {
+        cout << p1->getName() << " Connected Four and Wins!" << endl;
+        gameOver = true;
+    }
     count++;
-    
-    cout << p2->getName() << "'s turn, Please enter an integer between 1 and 7: ";
-    b1->p2Game(p2->move(b1->boardArray));
-    b1->printBoard();
-    // if(p2->p2WinCheck(b1->boardArray)) { win(p2) }
-
-    count++;
-  }
+    if(gameOver != true) {
+      cout << p2->getName() << "'s turn, Please enter an integer between 1 and 7: ";
+      b1->p2Game(p2->move(b1->boardArray));
+      b1->printBoard();
+      if(isWin(b1->boardArray)) {
+          cout << p2->getName() << " Connected Four and Wins!" << endl;
+          gameOver = true;
+      }    
   
-  if (count == 42) {
-    cout << endl << "The board is full, it is a draw!" << endl;
+      count++;
+    }
+    
+    if (count == 42) {
+      cout << endl << "The board is full, it is a draw!" << endl;
+    }
   }  
   delete (b1);
   delete (p1);
@@ -101,7 +118,7 @@ void cvc() {
 
 void hvc() {
   int count = 0;
-  
+  bool gameOver = false;
   SimpleComputerPlayer *p2 = new SimpleComputerPlayer;
   cout << "Player One, please enter your name: ";
   HumanPlayer *p1 = new HumanPlayer;
@@ -111,21 +128,29 @@ void hvc() {
   Board *b1 = new Board();
   b1->printBoard();
 
-  while (count < 42) {
+  while (count < 42 && gameOver == false) {
     cout << p1->getName() << "'s turn, Please enter an integer between 1 and 7: ";
     b1->p1Game(p1->move());
     b1->printBoard();
+    if(isWin(b1->boardArray)) {
+        cout << p1->getName() << " Connected Four and Wins!" << endl;
+        gameOver = true;
+    }    
 
     count++;
-    
-    cout << p2->getName() << "'s turn, Please enter an integer between 1 and 7: ";
-    b1->p2Game(p2->move(b1->boardArray));
-    b1->printBoard();
-
-    count++;
-  }
-  if (count == 42) {
-    cout << endl << "The board is full, it is a draw!" << endl;
+    if(gameOver != true) {
+      cout << p2->getName() << "'s turn, Please enter an integer between 1 and 7: ";
+      b1->p2Game(p2->move(b1->boardArray));
+      b1->printBoard();
+      if(isWin(b1->boardArray)) {
+          cout << p2->getName() << " Connected Four and Wins!" << endl;
+          gameOver = true;
+      }
+      count++;
+    }
+    if (count == 42) {
+      cout << endl << "The board is full, it is a draw!" << endl;
+    }
   }
   delete (b1);
   delete (p1);
@@ -134,7 +159,7 @@ void hvc() {
 
 void cvh() {
   int count = 0;
-  
+  bool gameOver = false;
   SimpleComputerPlayer *p1 = new SimpleComputerPlayer;
   cout << "Player One, please enter your name: ";
   p1->assignName();
@@ -144,27 +169,65 @@ void cvh() {
   Board *b1 = new Board();
   b1->printBoard();
 
-  while (count < 42) {
+  while (count < 42 && gameOver == false) {
     cout << p1->getName() << "'s turn, Please enter an integer between 1 and 7: ";
     b1->p2Game(p1->move(b1->boardArray));
     b1->printBoard();
-
+    if(isWin(b1->boardArray)) {
+        cout << p1->getName() << " Connected Four and Wins!" << endl;
+        gameOver = true;
+    }
     count++;
-    
-    cout << p2->getName() << "'s turn, Please enter an integer between 1 and 7: ";
-    b1->p1Game(p2->move());
-    b1->printBoard();
-
-    count++;
-  }
-  if (count == 42) {
-    cout << endl << "The board is full, it is a draw!" << endl;
+    if(gameOver!= true) {
+      cout << p2->getName() << "'s turn, Please enter an integer between 1 and 7: ";
+      b1->p1Game(p2->move());
+      b1->printBoard();
+      if(isWin(b1->boardArray)) {
+          cout << p2->getName() << " Connected Four and Wins!" << endl;
+          gameOver = true;
+      }
+      count++;
+    }
+    if (count == 42) {
+      cout << endl << "The board is full, it is a draw!" << endl;
+    }
   }
   delete (b1);
   delete (p1);
   delete (p2);
 }
 
-void win(Player p) {
-  cout << endl << p->getName() << "Connected Four and Wins!" << endl;
+bool winCheck(char arrayBoard[6][7], int row, int col, int stepRow, int stepCol) {
+  //cout << "Checking with a start at row " << row << " and column " << col << endl; 
+  
+  char start = arrayBoard[row][col];
+  if(start == '_') {
+      return false;
+  }
+  for(int i = 0; i < 4; i++) {
+      if(arrayBoard[row + i * stepRow][col + i * stepCol] != start) {
+          return false;
+      }
+  }
+  return true;
 }
+
+
+
+bool isWin(char arrayBoard[6][7]) {
+    //cout << "Checking for win..." << endl;
+    for(int i = 0; i < 6; i++) {
+        for(int j = 0; j < 7; j++){
+            //cout << "I am looping" << endl;
+            if(winCheck(arrayBoard, i, j, 0, 1) ||
+               winCheck(arrayBoard, i, j, 1, 0) ||
+               winCheck(arrayBoard, i, j, 1, 1) ||
+               winCheck(arrayBoard, i, j, 1, -1)){
+               
+                return true;
+            }
+        }
+    }
+    return false;
+}
+

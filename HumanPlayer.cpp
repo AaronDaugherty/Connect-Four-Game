@@ -14,3 +14,7 @@ int HumanPlayer::move() {
   cin >> move;
   return move;
 }
+
+string HumanPlayer::getName() {
+  return this->name;
+}
